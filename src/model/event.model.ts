@@ -3,7 +3,7 @@ interface IEvent {
   sportId: string
   sportTitle: string
   pictureUrl: string
-  date: Date
+  date: string
 }
 
 export default IEvent
