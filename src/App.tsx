@@ -1,7 +1,12 @@
 import React from 'react'
+import AppHeader from './components/AppHeader'
 
 function App() {
-  return <>Hello world</>
+  return (
+    <>
+      <AppHeader />
+    </>
+  )
 }
 
 export default App
