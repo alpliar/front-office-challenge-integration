@@ -26,6 +26,11 @@ const MedalsSection: React.FC = () => {
       dataIndex: 'bronze',
       key: 'bronze',
     },
+    {
+      title: 'Total',
+      dataIndex: 'total',
+      key: 'total',
+    },
   ]
 
   return (

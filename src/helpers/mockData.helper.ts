@@ -26,6 +26,7 @@ export default class MockDataHelper {
         key,
         country,
         ...medals,
+        total: medals.silver + medals.gold + medals.bronze,
       }
     })
   }
