@@ -17,4 +17,17 @@ export default class MockDataHelper {
     // return uniqueDisciplines
     return disciplines
   }
+
+  static getMedalsPerCountry() {
+    const { medals: countries } = mockData as IMockData
+    return countries.map((medalsSummary) => {
+      const { key, country, medals } = medalsSummary
+      return {
+        key,
+        country,
+        ...medals,
+        total: medals.silver + medals.gold + medals.bronze,
+      }
+    })
+  }
 }
