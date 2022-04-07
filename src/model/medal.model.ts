@@ -4,10 +4,10 @@ interface IMedalsCount {
   bronze: number
 }
 
-interface IMedalsSummary {
+interface ICountryMedals {
   key: string
   country: string
   medals: IMedalsCount
 }
 
-export default IMedalsSummary
+export default ICountryMedals
