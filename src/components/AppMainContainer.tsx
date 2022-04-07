@@ -1,5 +1,7 @@
+import { Divider } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 import React from 'react'
+import DisciplinesCarousel from './DisciplinesCarousel'
 import DisciplinesSelect from './DisciplinesSelect'
 
 const AppMainContainer = () => {
@@ -11,6 +13,9 @@ const AppMainContainer = () => {
   return (
     <Content style={contentStyle}>
       <DisciplinesSelect />
+      <Divider />
+      <DisciplinesCarousel />
+      <Divider />
     </Content>
   )
 }
