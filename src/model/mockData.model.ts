@@ -1,9 +1,9 @@
 import IEvent from './event.model'
-import IMedalsSummary from './medal.model'
+import ICountryMedals from './medal.model'
 
 interface IMockData {
   nextEvent: Array<IEvent>
-  medals: Array<IMedalsSummary>
+  medals: Array<ICountryMedals>
 }
 
 export default IMockData
