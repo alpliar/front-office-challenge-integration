@@ -6,6 +6,10 @@ L'objectif de ce challenge est de reproduire la page suivante avec les élèment
 
 Le défi est de ne pas utiliser de CSS (ou très peu) pour atteindre ce résultat.
 
+## Demo
+
+https://challenge-olympics-2020.vercel.app/
+
 ## Data
 
 Toute la data nécessaire se trouve dans le fichier `data.json`.
