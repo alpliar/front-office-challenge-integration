@@ -1,11 +1,21 @@
 import { Table } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import MockDataHelper from '../helpers/mockData.helper'
 import Title from './Title'
 
+interface ICountryMedals {
+  key: string
+  country: string
+  gold: number
+  silver: number
+  bronze: number
+  total: number
+}
+
 const MedalsSection: React.FC = () => {
   const medalsPerCountry = MockDataHelper.getMedalsPerCountry()
-  const columns = [
+  const columns: ColumnsType<ICountryMedals> = [
     {
       title: 'Pays',
       dataIndex: 'country',
@@ -34,6 +44,7 @@ const MedalsSection: React.FC = () => {
       dataIndex: 'total',
       key: 'total',
       sorter: (a: { total: number }, b: { total: number }) => a.total - b.total,
+      sortOrder: 'descend',
     },
   ]
 
