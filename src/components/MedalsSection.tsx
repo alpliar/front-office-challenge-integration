@@ -1,4 +1,4 @@
-import { Grid, Table, TableProps } from 'antd'
+import { Grid, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import MockDataHelper from '../helpers/mockData.helper'
