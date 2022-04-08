@@ -35,6 +35,7 @@ const DisciplinesCarousel: React.FC = () => {
             arrows
             slidesPerRow={1}
             slidesToShow={3}
+            slidesToScroll={3}
             dots={false}
             centerMode={false}
             draggable
