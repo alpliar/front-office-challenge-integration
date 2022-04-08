@@ -8,7 +8,8 @@ import MedalsSection from './MedalsSection'
 const AppMainContainer = () => {
   const contentStyle: React.CSSProperties = {
     backgroundColor: '#F0F2F5',
-    maxWidth: '80%',
+    width: '90%',
+    maxWidth: '1024px',
     margin: 'auto',
   }
 
