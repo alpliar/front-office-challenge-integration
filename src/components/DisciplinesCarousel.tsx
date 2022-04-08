@@ -43,13 +43,17 @@ const DisciplinesCarousel: React.FC = () => {
   const { context: selectedEvents } = useContext(EventsContext)
   const events = MockDataHelper.getEventsByTitle(selectedEvents)
 
+  const isSmallDevice = !Grid.useBreakpoint().md
+
   const carouselRef = React.createRef<CarouselRef>()
 
   const carouselStyle: React.CSSProperties = {
     cursor: 'grab',
   }
 
-  const isSmallDevice = !Grid.useBreakpoint().md
+  const carouselButtonsContainerStyle: React.CSSProperties = {
+    textAlign: 'center',
+  }
 
   const carouselSettings: CarouselProps = {
     arrows: true,
@@ -80,14 +84,14 @@ const DisciplinesCarousel: React.FC = () => {
 
       {events.length > 0 && (
         <Row align="middle" justify="center">
-          <Col span={buttonsSpan} style={{ textAlign: 'center' }}>
+          <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
             <PaginationButton direction="prev" onClick={handlePrev} />
           </Col>
           <Col span={carouselSpan}>
             <Carousel
               ref={carouselRef}
-              {...carouselSettings}
               style={carouselStyle}
+              {...carouselSettings}
               // nextArrow={<PaginationButton direction="next" onClick={handleNext} />}
               // prevArrow={<PaginationButton direction="prev" onClick={handlePrev} />}
             >
@@ -96,7 +100,7 @@ const DisciplinesCarousel: React.FC = () => {
               })}
             </Carousel>
           </Col>
-          <Col span={buttonsSpan} style={{ textAlign: 'center' }}>
+          <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
             <PaginationButton direction="next" onClick={handleNext} />
           </Col>
         </Row>
