@@ -1,5 +1,6 @@
 import { Carousel, Empty } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
+import EventsContext from '../context/EventsContext'
 import MockDataHelper from '../helpers/mockData.helper'
 import IEvent from '../model/event.model'
 import DisciplineCard from './DisciplineCard'
@@ -22,7 +23,8 @@ import Title from './Title'
 // }
 
 const DisciplinesCarousel: React.FC = () => {
-  const events = MockDataHelper.getEvents()
+  const { context: selectedEvents } = useContext(EventsContext)
+  const events = MockDataHelper.getEventsByTitle(selectedEvents)
 
   const carouselStyle: React.CSSProperties = {
     cursor: 'grab',
@@ -32,8 +34,9 @@ const DisciplinesCarousel: React.FC = () => {
     <>
       <Title level={2}>Prochaines épreuves</Title>
 
-      {!events && <Empty />}
-      {events && (
+      {!events.length && <Empty />}
+
+      {events.length > 0 && (
         <>
           <Carousel
             arrows
