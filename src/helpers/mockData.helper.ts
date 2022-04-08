@@ -1,19 +1,20 @@
 import mockData from '../data.json'
 import IEvent from '../model/event.model'
+import { ICountryMedalsFlat } from '../model/medal.model'
 import IMockData from '../model/mockData.model'
 
 export default class MockDataHelper {
-  static getEvents() {
+  static getEvents = (): IEvent[] => {
     const { nextEvent } = mockData as IMockData
     return nextEvent
   }
 
-  static getEventsByTitle(titles: string[]) {
+  static getEventsByTitle = (titles: string[]): IEvent[] => {
     const filteredEvents = this.getEvents().filter((event) => titles.includes(event.sportTitle))
     return filteredEvents
   }
 
-  static getEventsTitle() {
+  static getEventsTitle = (): string[] => {
     const disciplines = this.getEvents().map((event: IEvent) => event.sportTitle)
     // const uniqueDisciplines = [...new Set(disciplines)]
     // const uniqueDisciplines: Array<string> = disciplines.filter(
@@ -23,15 +24,22 @@ export default class MockDataHelper {
     return disciplines
   }
 
-  static getMedalsPerCountry() {
+  static getMedalsPerCountry = (): ICountryMedalsFlat[] => {
     const { medals: countries } = mockData as IMockData
     return countries.map((medalsSummary) => {
-      const { key, country, medals } = medalsSummary
+      const {
+        key,
+        country,
+        medals: { gold, silver, bronze },
+      } = medalsSummary
+
       return {
         key,
         country,
-        ...medals,
-        total: medals.silver + medals.gold + medals.bronze,
+        gold,
+        silver,
+        bronze,
+        total: silver + gold + bronze,
       }
     })
   }
