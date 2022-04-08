@@ -5,7 +5,7 @@ import MockDataHelper from '../helpers/mockData.helper'
 import IEvent from '../model/event.model'
 
 const DisciplinesSelect: React.FC = () => {
-  const { context: selectedEvents, setContext } = useContext(EventsContext)
+  const { selectedEvents, setSelectedEvents } = useContext(EventsContext)
   const allEvents: Array<IEvent> = MockDataHelper.getEvents()
 
   const selectStyle: React.CSSProperties = {
@@ -14,7 +14,7 @@ const DisciplinesSelect: React.FC = () => {
   }
 
   const handleChange = (newList: Array<string>) => {
-    setContext(newList)
+    setSelectedEvents(newList)
   }
 
   return (

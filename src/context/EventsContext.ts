@@ -1,11 +1,12 @@
 import { createContext } from 'react'
 import MockDataHelper from '../helpers/mockData.helper'
 
-export const defaultContext = MockDataHelper.getEventsTitle()
+export const allEvents = MockDataHelper.getEventsTitle()
 
-const Context = createContext({
-  context: defaultContext,
-  setContext: (arg: string[]) => {},
+const EventsContext = createContext({
+  allEvents,
+  selectedEvents: [...allEvents],
+  setSelectedEvents: (arg: string[]) => {},
 })
 
-export default Context
+export default EventsContext

@@ -41,7 +41,7 @@ const PaginationButton: React.FC<IPaginationButtonProps> = ({ direction, onClick
 }
 
 const DisciplinesCarousel: React.FC = () => {
-  const { context: selectedEvents } = useContext(EventsContext)
+  const { selectedEvents } = useContext(EventsContext)
   const events = MockDataHelper.getEventsByTitle(selectedEvents)
 
   const isSmallDevice = !Grid.useBreakpoint().md
