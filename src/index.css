@@ -13,3 +13,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Roboto', monospace;
 }
+
+thead.ant-table-thead > tr > th {
+  font-weight: bold;
+}
