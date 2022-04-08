@@ -1,4 +1,4 @@
-import { Table } from 'antd'
+import { Grid, Table, TableProps } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import React from 'react'
 import MockDataHelper from '../helpers/mockData.helper'
@@ -48,10 +48,17 @@ const MedalsSection: React.FC = () => {
     },
   ]
 
+  const isSmallDevice = !Grid.useBreakpoint().md
+
   return (
     <>
       <Title level={2}>Médailles</Title>
-      <Table pagination={false} dataSource={medalsPerCountry} columns={columns} />
+      <Table
+        pagination={false}
+        dataSource={medalsPerCountry}
+        columns={columns}
+        size={isSmallDevice ? 'small' : 'large'}
+      />
     </>
   )
 }
