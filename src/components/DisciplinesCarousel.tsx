@@ -1,5 +1,5 @@
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
-import { Carousel, CarouselProps, Col, Empty, Row } from 'antd'
+import { Carousel, CarouselProps, Col, Empty, Grid, Row } from 'antd'
 import { CarouselRef } from 'antd/lib/carousel'
 import React, { useContext } from 'react'
 import EventsContext from '../context/EventsContext'
@@ -39,6 +39,8 @@ const DisciplinesCarousel: React.FC = () => {
     cursor: 'grab',
   }
 
+  const isSmallDevice = !Grid.useBreakpoint().md
+
   const carouselSettings: CarouselProps = {
     arrows: true,
     centerMode: false,
@@ -46,8 +48,8 @@ const DisciplinesCarousel: React.FC = () => {
     draggable: true,
     infinite: false,
     slidesPerRow: 1,
-    slidesToScroll: 3,
-    slidesToShow: 3,
+    slidesToScroll: isSmallDevice ? 1 : 3,
+    slidesToShow: isSmallDevice ? 1 : 3,
   }
 
   const handleNext = () => {
