@@ -17,13 +17,23 @@ const PaginationButton: React.FC<IPaginationButtonProps> = ({ direction, onClick
   const isNext = direction === 'next'
   const iconStyle: React.CSSProperties = {
     fontSize: '2em',
-    cursor: 'pointer',
   }
+
   const Icon: React.FC = () =>
     isNext ? (
-      <RightCircleOutlined onClick={onClick} style={iconStyle} />
+      <RightCircleOutlined
+        aria-label="Voir les épreuves suivantes"
+        role="button"
+        onClick={onClick}
+        style={iconStyle}
+      />
     ) : (
-      <LeftCircleOutlined onClick={onClick} style={iconStyle} />
+      <LeftCircleOutlined
+        aria-label="Voir les épreuves précédentes"
+        role="button"
+        onClick={onClick}
+        style={iconStyle}
+      />
     )
 
   return <Icon />
