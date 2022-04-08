@@ -78,6 +78,7 @@ const DisciplinesCarousel: React.FC = () => {
 
   const buttonsSpan = isSmallDevice ? 4 : 2
   const carouselSpan = 24 - buttonsSpan * 2
+  const showNextPrev = events.length > noOfVisibleSlides
 
   return (
     <>
@@ -87,9 +88,11 @@ const DisciplinesCarousel: React.FC = () => {
 
       {events.length > 0 && (
         <Row align="middle" justify="center">
-          <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
-            <PaginationButton direction="prev" onClick={handlePrev} />
-          </Col>
+          {showNextPrev && (
+            <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
+              <PaginationButton direction="prev" onClick={handlePrev} />
+            </Col>
+          )}
           <Col span={carouselSpan}>
             <Carousel
               ref={carouselRef}
@@ -103,9 +106,11 @@ const DisciplinesCarousel: React.FC = () => {
               })}
             </Carousel>
           </Col>
-          <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
-            <PaginationButton direction="next" onClick={handleNext} />
-          </Col>
+          {showNextPrev && (
+            <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
+              <PaginationButton direction="next" onClick={handleNext} />
+            </Col>
+          )}
         </Row>
       )}
     </>
