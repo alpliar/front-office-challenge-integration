@@ -18,3 +18,7 @@ thead.ant-table-thead > tr > th {
   /* antd component doesn't allow any js style customization */
   font-weight: bold;
 }
+
+.slick-slider .slick-slide {
+  padding: 0.5rem;
+}
