@@ -1,5 +1,6 @@
 import { Card, Image, Space } from 'antd'
 import Text from 'antd/lib/typography/Text'
+import moment from 'moment'
 import React from 'react'
 import IEvent from '../model/event.model'
 
@@ -21,6 +22,8 @@ const DisciplineCard: React.FC<IEvent> = ({ id, date, pictureUrl, sportId, sport
     fontWeight: 'bold',
     fontSize: '1.2em',
   }
+  const formattedDate = moment.unix(parseInt(date)).format('DD-MM-YYYY - h:mm')
+
   return (
     <Card style={cardStyle} bodyStyle={cardBodyStyle}>
       <Image
@@ -35,7 +38,7 @@ const DisciplineCard: React.FC<IEvent> = ({ id, date, pictureUrl, sportId, sport
         <Text ellipsis style={cardTitleStyle}>
           {sportTitle}
         </Text>
-        <Text>{date}</Text>
+        <Text>{formattedDate}</Text>
       </Space>
     </Card>
   )
