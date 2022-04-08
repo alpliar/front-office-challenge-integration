@@ -1,6 +1,7 @@
 import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
 import { Carousel, CarouselProps, Col, Empty, Grid, Row } from 'antd'
 import { CarouselRef } from 'antd/lib/carousel'
+import Text from 'antd/lib/typography/Text'
 import React, { useContext } from 'react'
 import EventsContext from '../context/EventsContext'
 import MockDataHelper from '../helpers/mockData.helper'
@@ -82,7 +83,7 @@ const DisciplinesCarousel: React.FC = () => {
     <>
       <Title level={2}>Prochaines épreuves</Title>
 
-      {!events.length && <Empty />}
+      {!events.length && <Empty description={<Text>Aucune épreuve de prévu</Text>} />}
 
       {events.length > 0 && (
         <Row align="middle" justify="center">
