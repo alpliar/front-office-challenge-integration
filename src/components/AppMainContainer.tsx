@@ -16,7 +16,6 @@ const AppMainContainer = () => {
   return (
     <Content style={contentStyle}>
       <DisciplinesSelect />
-      <Divider />
       <DisciplinesCarousel />
       <Divider />
       <MedalsSection />
