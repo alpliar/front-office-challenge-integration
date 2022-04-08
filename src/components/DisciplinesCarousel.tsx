@@ -1,5 +1,8 @@
 import { Carousel, Empty } from 'antd'
 import React from 'react'
+import MockDataHelper from '../helpers/mockData.helper'
+import IEvent from '../model/event.model'
+import DisciplineCard from './DisciplineCard'
 import Title from './Title'
 // import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
 
@@ -19,7 +22,7 @@ import Title from './Title'
 // }
 
 const DisciplinesCarousel: React.FC = () => {
-  const events = {}
+  const events = MockDataHelper.getEvents()
 
   return (
     <>
@@ -30,28 +33,22 @@ const DisciplinesCarousel: React.FC = () => {
         <>
           <Carousel
             arrows
-            slidesPerRow={3}
+            slidesPerRow={1}
+            slidesToShow={3}
             dots={false}
             centerMode={false}
             draggable
+            infinite={false}
             // nextArrow={<NextArrow />}
             // prevArrow={<PrevArrow />}
           >
-            <div>
-              <h3 style={{ backgroundColor: 'tomato' }}>Item 1</h3>
-            </div>
-            <div>
-              <h3 style={{ backgroundColor: 'teal' }}>Item 2</h3>
-            </div>
-            <div>
-              <h3 style={{ backgroundColor: 'gold' }}>Item 3</h3>
-            </div>
-            <div>
-              <h3 style={{ backgroundColor: 'navy' }}>Item 4</h3>
-            </div>
-            <div>
-              <h3 style={{ backgroundColor: 'violet' }}>Item 5</h3>
-            </div>
+            {events.map((event: IEvent) => {
+              return (
+                <>
+                  <DisciplineCard key={event.id} {...event} />
+                </>
+              )
+            })}
           </Carousel>
         </>
       )}
