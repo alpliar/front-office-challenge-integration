@@ -1,15 +1,20 @@
 import { Select } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
+import EventsContext from '../context/EventsContext'
 import MockDataHelper from '../helpers/mockData.helper'
 import IEvent from '../model/event.model'
 
 const DisciplinesSelect: React.FC = () => {
-  const defaultValue: Array<string> = MockDataHelper.getEventsTitle()
-  const events: Array<IEvent> = MockDataHelper.getEvents()
+  const { context: selectedEvents, setContext } = useContext(EventsContext)
+  const allEvents: Array<IEvent> = MockDataHelper.getEvents()
 
   const selectStyle: React.CSSProperties = {
     width: '100%',
     padding: '1em 0',
+  }
+
+  const handleChange = (newList: Array<string>) => {
+    setContext(newList)
   }
 
   return (
@@ -17,14 +22,19 @@ const DisciplinesSelect: React.FC = () => {
       style={selectStyle}
       mode="multiple"
       placeholder="Please select"
-      defaultValue={defaultValue}
+      value={selectedEvents}
+      onChange={handleChange}
     >
-      {events.map((event: IEvent) => {
-        const { sportTitle } = event
+      {allEvents.map((event: IEvent) => {
+        const { id, sportTitle } = event
         // FIXME: event.id should be used as Select.Option value, but this allows for duplicate selections...
         // const { id, sportTitle } = event
         // return <Select.Option value={id}>{sportTitle}</Select.Option>
-        return <Select.Option value={sportTitle}>{sportTitle}</Select.Option>
+        return (
+          <Select.Option key={id} value={sportTitle}>
+            {sportTitle}
+          </Select.Option>
+        )
       })}
     </Select>
   )

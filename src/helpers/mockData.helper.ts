@@ -8,6 +8,11 @@ export default class MockDataHelper {
     return nextEvent
   }
 
+  static getEventsByTitle(titles: string[]) {
+    const filteredEvents = this.getEvents().filter((event) => titles.includes(event.sportTitle))
+    return filteredEvents
+  }
+
   static getEventsTitle() {
     const disciplines = this.getEvents().map((event: IEvent) => event.sportTitle)
     // const uniqueDisciplines = [...new Set(disciplines)]
