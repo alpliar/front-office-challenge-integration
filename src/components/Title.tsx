@@ -8,7 +8,7 @@ interface ITitleProps {
 
 const Title: React.FC<ITitleProps> = ({ children, level = 1, noMargin = false }) => {
   const titleStyle: React.CSSProperties = {
-    marginBottom: noMargin ? 'inherit' : undefined,
+    marginBottom: noMargin ? 'inherit' : '1.5em',
   }
   return (
     <Typography.Title style={titleStyle} level={level}>
