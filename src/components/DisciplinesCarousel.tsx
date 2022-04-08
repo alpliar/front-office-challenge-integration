@@ -69,6 +69,9 @@ const DisciplinesCarousel: React.FC = () => {
     if (carouselRef?.current) carouselRef.current.prev()
   }
 
+  const buttonsSpan = isSmallDevice ? 4 : 2
+  const carouselSpan = 24 - buttonsSpan * 2
+
   return (
     <>
       <Title level={2}>Prochaines épreuves</Title>
@@ -77,10 +80,10 @@ const DisciplinesCarousel: React.FC = () => {
 
       {events.length > 0 && (
         <Row align="middle" justify="center">
-          <Col span={2} style={{ textAlign: 'center' }}>
+          <Col span={buttonsSpan} style={{ textAlign: 'center' }}>
             <PaginationButton direction="prev" onClick={handlePrev} />
           </Col>
-          <Col span={20}>
+          <Col span={carouselSpan}>
             <Carousel
               ref={carouselRef}
               {...carouselSettings}
@@ -93,7 +96,7 @@ const DisciplinesCarousel: React.FC = () => {
               })}
             </Carousel>
           </Col>
-          <Col span={2} style={{ textAlign: 'center' }}>
+          <Col span={buttonsSpan} style={{ textAlign: 'center' }}>
             <PaginationButton direction="next" onClick={handleNext} />
           </Col>
         </Row>
