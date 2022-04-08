@@ -7,8 +7,18 @@ const DisciplinesSelect: React.FC = () => {
   const defaultValue: Array<string> = MockDataHelper.getEventsTitle()
   const events: Array<IEvent> = MockDataHelper.getEvents()
 
+  const selectStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '1em 0',
+  }
+
   return (
-    <Select mode="multiple" placeholder="Please select" defaultValue={defaultValue}>
+    <Select
+      style={selectStyle}
+      mode="multiple"
+      placeholder="Please select"
+      defaultValue={defaultValue}
+    >
       {events.map((event: IEvent) => {
         const { sportTitle } = event
         // FIXME: event.id should be used as Select.Option value, but this allows for duplicate selections...
