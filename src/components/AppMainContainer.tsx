@@ -5,6 +5,13 @@ import DisciplinesCarousel from './DisciplinesCarousel'
 import DisciplinesSelect from './DisciplinesSelect'
 import MedalsSection from './MedalsSection'
 
+const SectionDivider: React.FC = () => {
+  const dividerStyle: React.CSSProperties = {
+    margin: '3em 0',
+  }
+  return <Divider style={dividerStyle} />
+}
+
 const AppMainContainer = () => {
   const contentStyle: React.CSSProperties = {
     backgroundColor: '#F0F2F5',
@@ -17,7 +24,7 @@ const AppMainContainer = () => {
     <Content style={contentStyle}>
       <DisciplinesSelect />
       <DisciplinesCarousel />
-      <Divider />
+      <SectionDivider />
       <MedalsSection />
     </Content>
   )
