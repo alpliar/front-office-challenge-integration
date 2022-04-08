@@ -34,7 +34,7 @@ const columns: ColumnsType<ICountryMedalsFlat> = [
     dataIndex: 'total',
     key: 'total',
     sorter: (a: ICountryMedalsFlat, b: ICountryMedalsFlat) => a.total - b.total,
-    sortOrder: 'descend',
+    defaultSortOrder: 'descend',
   },
 ]
 
