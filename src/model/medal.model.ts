@@ -10,4 +10,13 @@ interface ICountryMedals {
   medals: IMedalsCount
 }
 
+export interface ICountryMedalsFlat {
+  key: string
+  country: string
+  gold: number
+  silver: number
+  bronze: number
+  total: number
+}
+
 export default ICountryMedals
