@@ -49,11 +49,7 @@ const DisciplinesCarousel: React.FC = () => {
             // prevArrow={<PrevArrow />}
           >
             {events.map((event: IEvent) => {
-              return (
-                <>
-                  <DisciplineCard key={event.id} {...event} />
-                </>
-              )
+              return <DisciplineCard key={event.id} {...event} />
             })}
           </Carousel>
         </>
