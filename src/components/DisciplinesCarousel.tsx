@@ -24,6 +24,10 @@ import Title from './Title'
 const DisciplinesCarousel: React.FC = () => {
   const events = MockDataHelper.getEvents()
 
+  const carouselStyle: React.CSSProperties = {
+    cursor: 'grab',
+  }
+
   return (
     <>
       <Title level={2}>Prochaines épreuves</Title>
@@ -40,6 +44,7 @@ const DisciplinesCarousel: React.FC = () => {
             centerMode={false}
             draggable
             infinite={false}
+            style={carouselStyle}
             // nextArrow={<NextArrow />}
             // prevArrow={<PrevArrow />}
           >
