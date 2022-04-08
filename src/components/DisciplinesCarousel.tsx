@@ -30,6 +30,7 @@ const DisciplinesCarousel: React.FC = () => {
         <>
           <Carousel
             arrows
+            dots={false}
             centerMode
             style={{ display: 'flex', justifyItems: 'space-around' }}
             // nextArrow={<NextArrow />}
