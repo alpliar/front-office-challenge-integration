@@ -22,7 +22,7 @@ const DisciplineCard: React.FC<IEvent> = ({ id, date, pictureUrl, sportId, sport
     fontWeight: 'bold',
     fontSize: '1.2em',
   }
-  const formattedDate = moment.unix(parseInt(date)).format('DD-MM-YYYY - h:mm')
+  const formattedDate = moment.unix(parseInt(date)).format('DD/MM/YYYY - h:mm')
 
   return (
     <Card style={cardStyle} bodyStyle={cardBodyStyle}>
