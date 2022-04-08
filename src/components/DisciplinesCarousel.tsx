@@ -1,4 +1,4 @@
-import { Carousel, Empty } from 'antd'
+import { Carousel, CarouselProps, Empty } from 'antd'
 import React, { useContext } from 'react'
 import EventsContext from '../context/EventsContext'
 import MockDataHelper from '../helpers/mockData.helper'
@@ -30,6 +30,17 @@ const DisciplinesCarousel: React.FC = () => {
     cursor: 'grab',
   }
 
+  const carouselSettings: CarouselProps = {
+    arrows: true,
+    centerMode: false,
+    dots: false,
+    draggable: true,
+    infinite: false,
+    slidesPerRow: 1,
+    slidesToScroll: 3,
+    slidesToShow: 3,
+  }
+
   return (
     <>
       <Title level={2}>Prochaines épreuves</Title>
@@ -39,14 +50,7 @@ const DisciplinesCarousel: React.FC = () => {
       {events.length > 0 && (
         <>
           <Carousel
-            arrows
-            slidesPerRow={1}
-            slidesToShow={3}
-            slidesToScroll={3}
-            dots={false}
-            centerMode={false}
-            draggable
-            infinite={false}
+            {...carouselSettings}
             style={carouselStyle}
             // nextArrow={<NextArrow />}
             // prevArrow={<PrevArrow />}
