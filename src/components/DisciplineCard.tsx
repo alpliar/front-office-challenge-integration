@@ -1,19 +1,39 @@
-import { Card, Image } from 'antd'
+import { Card, Image, Space } from 'antd'
 import Text from 'antd/lib/typography/Text'
 import React from 'react'
 import IEvent from '../model/event.model'
 
 const DisciplineCard: React.FC<IEvent> = ({ id, date, pictureUrl, sportId, sportTitle }) => {
   const cardStyle: React.CSSProperties = {
-    height: '10em',
+    width: '100%',
+  }
+  const cardBodyStyle: React.CSSProperties = {
+    padding: 0,
+  }
+  const imageStyle: React.CSSProperties = {
+    objectFit: 'cover',
+  }
+  const cardContentStyle: React.CSSProperties = {
+    padding: '1em',
+  }
+  const cardTitleStyle: React.CSSProperties = {
+    fontWeight: 'bold',
+    fontSize: '1.2em',
   }
   return (
-    <Card style={cardStyle}>
-      <Image preview={false} src={pictureUrl} alt={`Image illustrant le sport ${sportTitle}`} />
-      <div style={{ padding: '1em' }}>
-        <Text>{sportTitle}</Text>
+    <Card style={cardStyle} bodyStyle={cardBodyStyle}>
+      <Image
+        width="100%"
+        height="10em"
+        style={imageStyle}
+        preview={false}
+        src={pictureUrl}
+        alt={`Image illustrant le sport ${sportTitle}`}
+      />
+      <Space direction="vertical" size="small" style={cardContentStyle}>
+        <Text style={cardTitleStyle}>{sportTitle}</Text>
         <Text>{date}</Text>
-      </div>
+      </Space>
     </Card>
   )
 }
