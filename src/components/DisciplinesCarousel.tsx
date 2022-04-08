@@ -55,15 +55,17 @@ const DisciplinesCarousel: React.FC = () => {
     textAlign: 'center',
   }
 
+  const noOfVisibleSlides = isSmallDevice ? 1 : 3
+
   const carouselSettings: CarouselProps = {
     arrows: true,
     centerMode: false,
     dots: false,
-    draggable: true,
+    swipe: true,
     infinite: false,
     slidesPerRow: 1,
-    slidesToScroll: isSmallDevice ? 1 : 3,
-    slidesToShow: isSmallDevice ? 1 : 3,
+    slidesToScroll: noOfVisibleSlides,
+    slidesToShow: noOfVisibleSlides,
   }
 
   const handleNext = () => {
