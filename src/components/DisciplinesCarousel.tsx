@@ -30,9 +30,10 @@ const DisciplinesCarousel: React.FC = () => {
         <>
           <Carousel
             arrows
+            slidesPerRow={3}
             dots={false}
-            centerMode
-            style={{ display: 'flex', justifyItems: 'space-around' }}
+            centerMode={false}
+            draggable
             // nextArrow={<NextArrow />}
             // prevArrow={<PrevArrow />}
           >
