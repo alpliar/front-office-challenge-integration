@@ -2,7 +2,7 @@ import { Footer } from 'antd/lib/layout/layout'
 import React from 'react'
 
 const AppFooter = () => {
-  return <Footer>AppFooter</Footer>
+  return <Footer></Footer>
 }
 
 export default AppFooter

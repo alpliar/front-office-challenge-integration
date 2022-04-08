@@ -51,7 +51,7 @@ const MedalsSection: React.FC = () => {
   return (
     <>
       <Title level={2}>Médailles</Title>
-      <Table dataSource={medalsPerCountry} columns={columns} />;
+      <Table pagination={false} dataSource={medalsPerCountry} columns={columns} />
     </>
   )
 }

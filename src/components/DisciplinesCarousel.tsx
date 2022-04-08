@@ -1,34 +1,55 @@
-import { Carousel, CarouselProps, Empty } from 'antd'
+import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
+import { Carousel, CarouselProps, Col, Empty, Grid, Row } from 'antd'
+import { CarouselRef } from 'antd/lib/carousel'
 import React, { useContext } from 'react'
 import EventsContext from '../context/EventsContext'
 import MockDataHelper from '../helpers/mockData.helper'
 import IEvent from '../model/event.model'
 import DisciplineCard from './DisciplineCard'
 import Title from './Title'
-// import { LeftCircleFilled, RightCircleFilled } from '@ant-design/icons'
 
-// const NextArrow: React.FC = () => {
-//   return (
-//     <span style={{ backgroundColor: 'gold' }}>
-//       <RightCircleFilled />
-//     </span>
-//   )
-// }
-// const PrevArrow: React.FC = () => {
-//   return (
-//     <span style={{ backgroundColor: 'gold' }}>
-//       <LeftCircleFilled />
-//     </span>
-//   )
-// }
+interface IPaginationButtonProps {
+  direction: 'next' | 'prev'
+  onClick: () => void
+}
+
+const PaginationButton: React.FC<IPaginationButtonProps> = ({ direction, onClick }) => {
+  const isNext = direction === 'next'
+  const iconStyle: React.CSSProperties = {
+    fontSize: '2em',
+  }
+
+  const Icon: React.FC = () =>
+    isNext ? (
+      <RightCircleOutlined
+        aria-label="Voir les épreuves suivantes"
+        role="button"
+        onClick={onClick}
+        style={iconStyle}
+      />
+    ) : (
+      <LeftCircleOutlined
+        aria-label="Voir les épreuves précédentes"
+        role="button"
+        onClick={onClick}
+        style={iconStyle}
+      />
+    )
+
+  return <Icon />
+}
 
 const DisciplinesCarousel: React.FC = () => {
   const { context: selectedEvents } = useContext(EventsContext)
   const events = MockDataHelper.getEventsByTitle(selectedEvents)
 
+  const carouselRef = React.createRef<CarouselRef>()
+
   const carouselStyle: React.CSSProperties = {
     cursor: 'grab',
   }
+
+  const isSmallDevice = !Grid.useBreakpoint().md
 
   const carouselSettings: CarouselProps = {
     arrows: true,
@@ -37,8 +58,15 @@ const DisciplinesCarousel: React.FC = () => {
     draggable: true,
     infinite: false,
     slidesPerRow: 1,
-    slidesToScroll: 3,
-    slidesToShow: 3,
+    slidesToScroll: isSmallDevice ? 1 : 3,
+    slidesToShow: isSmallDevice ? 1 : 3,
+  }
+
+  const handleNext = () => {
+    if (carouselRef?.current) carouselRef.current.next()
+  }
+  const handlePrev = () => {
+    if (carouselRef?.current) carouselRef.current.prev()
   }
 
   return (
@@ -48,18 +76,27 @@ const DisciplinesCarousel: React.FC = () => {
       {!events.length && <Empty />}
 
       {events.length > 0 && (
-        <>
-          <Carousel
-            {...carouselSettings}
-            style={carouselStyle}
-            // nextArrow={<NextArrow />}
-            // prevArrow={<PrevArrow />}
-          >
-            {events.map((event: IEvent) => {
-              return <DisciplineCard key={event.id} {...event} />
-            })}
-          </Carousel>
-        </>
+        <Row align="middle" justify="center">
+          <Col span={2} style={{ textAlign: 'center' }}>
+            <PaginationButton direction="prev" onClick={handlePrev} />
+          </Col>
+          <Col span={20}>
+            <Carousel
+              ref={carouselRef}
+              {...carouselSettings}
+              style={carouselStyle}
+              // nextArrow={<PaginationButton direction="next" onClick={handleNext} />}
+              // prevArrow={<PaginationButton direction="prev" onClick={handlePrev} />}
+            >
+              {events.map((event: IEvent) => {
+                return <DisciplineCard key={event.id} {...event} />
+              })}
+            </Carousel>
+          </Col>
+          <Col span={2} style={{ textAlign: 'center' }}>
+            <PaginationButton direction="next" onClick={handleNext} />
+          </Col>
+        </Row>
       )}
     </>
   )
