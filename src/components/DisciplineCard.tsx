@@ -15,6 +15,7 @@ const DisciplineCard: React.FC<IEvent> = ({ id, date, pictureUrl, sportId, sport
   }
   const cardContentStyle: React.CSSProperties = {
     padding: '1em',
+    width: '100%',
   }
   const cardTitleStyle: React.CSSProperties = {
     fontWeight: 'bold',
@@ -31,7 +32,9 @@ const DisciplineCard: React.FC<IEvent> = ({ id, date, pictureUrl, sportId, sport
         alt={`Image illustrant le sport ${sportTitle}`}
       />
       <Space direction="vertical" size="small" style={cardContentStyle}>
-        <Text style={cardTitleStyle}>{sportTitle}</Text>
+        <Text ellipsis style={cardTitleStyle}>
+          {sportTitle}
+        </Text>
         <Text>{date}</Text>
       </Space>
     </Card>
