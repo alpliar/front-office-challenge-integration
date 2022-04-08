@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AppFooter from './components/AppFooter'
 import AppHeader from './components/AppHeader'
 import AppLayout from './components/AppLayout'
 import AppMainContainer from './components/AppMainContainer'
@@ -12,7 +13,7 @@ function App() {
       <AppLayout>
         <AppHeader />
         <AppMainContainer />
-        {/* <AppFooter /> */}
+        <AppFooter />
       </AppLayout>
     </EventsContext.Provider>
   )
