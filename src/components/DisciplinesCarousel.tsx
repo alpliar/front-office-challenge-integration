@@ -50,9 +50,7 @@ const DisciplinesCarousel: React.FC = () => {
 
   const carouselRef = React.createRef<CarouselRef>()
 
-  const carouselStyle: React.CSSProperties = {
-    cursor: 'grab',
-  }
+  const carouselStyle: React.CSSProperties = {}
 
   const carouselButtonsContainerStyle: React.CSSProperties = {
     textAlign: 'center',
@@ -64,9 +62,9 @@ const DisciplinesCarousel: React.FC = () => {
     arrows: false,
     centerMode: false,
     dots: false,
-    swipe: true,
     infinite: false,
     slidesPerRow: 1,
+    adaptiveHeight: true,
     slidesToScroll: noOfVisibleSlides,
     slidesToShow: noOfVisibleSlides,
   }
@@ -113,8 +111,6 @@ const DisciplinesCarousel: React.FC = () => {
               style={carouselStyle}
               {...carouselSettings}
               beforeChange={handleChange}
-              // nextArrow={<PaginationButton direction="next" onClick={handleNext} />}
-              // prevArrow={<PaginationButton direction="prev" onClick={handlePrev} />}
             >
               {events.map((event: IEvent) => {
                 return <DisciplineCard key={event.id} {...event} />
