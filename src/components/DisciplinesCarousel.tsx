@@ -82,7 +82,6 @@ const DisciplinesCarousel: React.FC = () => {
   const carouselSpan = 24 - buttonsSpan * 2
 
   const handleChange = (currentSlide: number, nextSlide: number) => {
-    console.log(currentSlide, nextSlide)
     const isPaginable = events.length > noOfVisibleSlides
     const noOfPages = Math.ceil((events.length - 1) / noOfVisibleSlides)
     const isStart = nextSlide === 0
