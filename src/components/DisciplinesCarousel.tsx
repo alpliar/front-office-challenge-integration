@@ -2,7 +2,7 @@ import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons'
 import { Carousel, CarouselProps, Col, Empty, Grid, Row } from 'antd'
 import { CarouselRef } from 'antd/lib/carousel'
 import Text from 'antd/lib/typography/Text'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import EventsContext from '../context/EventsContext'
 import MockDataHelper from '../helpers/mockData.helper'
 import IEvent from '../model/event.model'
@@ -41,6 +41,8 @@ const PaginationButton: React.FC<IPaginationButtonProps> = ({ direction, onClick
 }
 
 const DisciplinesCarousel: React.FC = () => {
+  const [isNextEnabled, setIsNextEnabled] = useState<boolean>(true)
+  const [isPrevEnabled, setIsPrevEnabled] = useState<boolean>(false)
   const { selectedEvents } = useContext(EventsContext)
   const events = MockDataHelper.getEventsByTitle(selectedEvents)
 
@@ -59,7 +61,7 @@ const DisciplinesCarousel: React.FC = () => {
   const noOfVisibleSlides = isSmallDevice ? 1 : 3
 
   const carouselSettings: CarouselProps = {
-    arrows: true,
+    arrows: false,
     centerMode: false,
     dots: false,
     swipe: true,
@@ -78,7 +80,22 @@ const DisciplinesCarousel: React.FC = () => {
 
   const buttonsSpan = isSmallDevice ? 4 : 2
   const carouselSpan = 24 - buttonsSpan * 2
-  const showNextPrev = events.length > noOfVisibleSlides
+
+  const handleChange = (currentSlide: number, nextSlide: number) => {
+    console.log(currentSlide, nextSlide)
+    const isPaginable = events.length > noOfVisibleSlides
+    const noOfPages = Math.ceil((events.length - 1) / noOfVisibleSlides)
+    const isStart = nextSlide === 0
+    const isEnd = nextSlide === noOfPages
+
+    if (isPaginable) {
+      setIsPrevEnabled(isEnd || !isStart)
+      setIsNextEnabled(!isEnd)
+    } else {
+      setIsPrevEnabled(false)
+      setIsNextEnabled(false)
+    }
+  }
 
   return (
     <>
@@ -88,16 +105,15 @@ const DisciplinesCarousel: React.FC = () => {
 
       {events.length > 0 && (
         <Row align="middle" justify="center">
-          {showNextPrev && (
-            <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
-              <PaginationButton direction="prev" onClick={handlePrev} />
-            </Col>
-          )}
+          <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
+            {isPrevEnabled && <PaginationButton direction="prev" onClick={handlePrev} />}
+          </Col>
           <Col span={carouselSpan}>
             <Carousel
               ref={carouselRef}
               style={carouselStyle}
               {...carouselSettings}
+              beforeChange={handleChange}
               // nextArrow={<PaginationButton direction="next" onClick={handleNext} />}
               // prevArrow={<PaginationButton direction="prev" onClick={handlePrev} />}
             >
@@ -106,11 +122,9 @@ const DisciplinesCarousel: React.FC = () => {
               })}
             </Carousel>
           </Col>
-          {showNextPrev && (
-            <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
-              <PaginationButton direction="next" onClick={handleNext} />
-            </Col>
-          )}
+          <Col span={buttonsSpan} style={carouselButtonsContainerStyle}>
+            {isNextEnabled && <PaginationButton direction="next" onClick={handleNext} />}
+          </Col>
         </Row>
       )}
     </>
