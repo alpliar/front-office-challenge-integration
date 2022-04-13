@@ -64,7 +64,7 @@ const DisciplinesCarousel: React.FC = () => {
     dots: false,
     infinite: false,
     slidesPerRow: 1,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
     slidesToScroll: noOfVisibleSlides,
     slidesToShow: noOfVisibleSlides,
   }
